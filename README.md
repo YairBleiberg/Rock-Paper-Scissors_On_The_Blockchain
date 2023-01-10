@@ -1,1 +1,6 @@
-# Rock-Paper-Scissors_On_The_Blockchain
+# Rock Paper Scissors On The Blockchain
+
+This game implements a smart contract of a rock paper scissors games database on the blockchain. For each game, both players deposit the same amount of money into the contract, and the winner of the game gets all the money (in case of a tie, each player gets their money back).
+Since the blockchain is public for everyone to read, the second player could wait for the first player to make her move, and then make the move that beats the first player's move. Therefore, moves must be both "hiding" and "binding" - that is, a player should not be able to know what move the other player made until she reveals it, and a player should not be able to change her move after committing to it. The solution is to send a hash of (move + large random nonce). A player commits with the hash, and once both players have committed their hashes, both players reveal the moves they made, along with the nonce.
+In order to prevent the losing player from refusing to reveal their move and freezing the money forever, the player who has revealed their move may claim all the money if the losing player refuses to reveal their move within a certain period of time.
+And in order to prevent the second player from suddenly refusing to play, thereby freezing the first player's money, the first player may cancel the game and withdraw their money at any time before the second player commits.
